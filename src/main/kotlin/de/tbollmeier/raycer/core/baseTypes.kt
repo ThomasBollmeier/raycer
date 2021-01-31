@@ -1,6 +1,7 @@
 package de.tbollmeier.raycer.core
 
 import kotlin.math.abs
+import kotlin.math.sqrt
 
 open class Tuple3D(val x: Double, val y: Double, val z: Double) {
 
@@ -22,18 +23,36 @@ open class Tuple3D(val x: Double, val y: Double, val z: Double) {
 
 class Point(x: Double, y: Double, z: Double) : Tuple3D(x, y, z) {
 
-    operator fun plus(t: Tuple3D) = Point(x + t.x, y + t.y, z + t.z)
+    operator fun unaryMinus() = Point(-x, -y, -z)
 
-    operator fun minus(pt: Point) = Point(x - pt.x, y - pt.y, z - pt.z)
+    operator fun plus(v: Vector) = Point(x + v.x, y + v.y, z + v.z)
+
+    operator fun minus(pt: Point) = Vector(x - pt.x, y - pt.y, z - pt.z)
 
 }
 
 class Vector(x: Double, y: Double, z: Double) : Tuple3D(x, y, z) {
 
+    operator fun unaryMinus() = Vector(-x, -y, -z)
+
     operator fun plus(pt: Point) = Point(x + pt.x, y + pt.y, z + pt.z)
 
-    operator fun plus(vec: Vector) = Vector(x + vec.x, y + vec.y, z + vec.z)
+    operator fun plus(v: Vector) = Vector(x + v.x, y + v.y, z + v.z)
 
-    operator fun minus(vec: Vector) = Vector(x - vec.x, y - vec.y, z - vec.z)
+    operator fun minus(v: Vector) = Vector(x - v.x, y - v.y, z - v.z)
+
+    operator fun times(factor: Double) = Vector(factor * x, factor * y, factor * z)
+
+    operator fun div(quot: Double) = Vector( x / quot, y / quot, z / quot)
+
+    fun dot(v: Vector) = x * v.x + y * v.y + z * v.z
+
+    fun cross(v: Vector) = Vector(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x)
+
+    fun length() = sqrt(x * x + y * y + z * z)
+
+    fun norm() = this / length()
 
 }
+
+operator fun Double.times(v: Vector) = Vector(this * v.x, this * v.y, this * v.z)
