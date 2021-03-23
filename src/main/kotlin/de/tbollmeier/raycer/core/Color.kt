@@ -20,6 +20,10 @@ class Color(val red: Double, val green: Double, val blue: Double) {
         return Color(factor * red, factor * green, factor * blue)
     }
 
+    fun hadamardProduct(other: Color) : Color {
+        return Color(red * other.red, green * other.green, blue * other.blue)
+    }
+
 }
 
 operator fun Double.times(color: Color) =

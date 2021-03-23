@@ -52,4 +52,16 @@ internal class ColorTest {
         assertTrue(exp.isEqualTo(act2))
 
     }
+
+    @Test
+    fun hadamardProduct() {
+
+        val c1 = Color(1.0, 0.2, 0.4)
+        val c2 = Color(0.9, 1.0, 0.1)
+        val act = c1.hadamardProduct(c2)
+        val exp = Color(0.9, 0.2, 0.04)
+
+        assertTrue(exp.isEqualTo(act))
+
+    }
 }
