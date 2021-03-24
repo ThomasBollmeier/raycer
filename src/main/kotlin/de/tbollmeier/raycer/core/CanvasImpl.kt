@@ -1,19 +1,19 @@
 package de.tbollmeier.raycer.core
 
 class CanvasImpl private constructor(
-    private val height: Int,
-    private val width: Int
+    private val width: Int,
+    private val height: Int
 ): Canvas {
 
     companion object {
 
-        fun create(height: Int, width: Int) : Canvas =
-            CanvasImpl(height, width)
+        fun create(width: Int, height: Int) : Canvas =
+            CanvasImpl(width, height)
 
     }
 
     private val pixels: Array<Array<Color>> =
-        Array(height) { Array(width) { Color(0.0, 0.0, 0.0)} }
+        Array(height) { Array(width) { Color() } }
 
     override fun getWidth() = width
 
@@ -25,4 +25,11 @@ class CanvasImpl private constructor(
         pixels[y][x] = color
     }
 
+    override fun setBackground(color: Color) {
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                pixels[y][x] = color
+            }
+        }
+    }
 }

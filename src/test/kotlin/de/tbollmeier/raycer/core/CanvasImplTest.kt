@@ -15,12 +15,12 @@ internal class CanvasImplTest {
 
     @Test
     fun getWidth() {
-        assertEquals(20, cut.getWidth())
+        assertEquals(10, cut.getWidth())
     }
 
     @Test
     fun getHeight() {
-        assertEquals(10, cut.getHeight())
+        assertEquals(20, cut.getHeight())
     }
 
     @Test
@@ -51,5 +51,24 @@ internal class CanvasImplTest {
                 }
             }
         }
+    }
+
+    @Test
+    fun setBackground() {
+
+        val blue = Color(blue = 1.0)
+        cut.setBackground(blue)
+
+        val h = cut.getHeight()
+        val w = cut.getWidth()
+
+        for (y in 0 until h) {
+            for (x in 0 until w) {
+                assertTrue(cut.getPixel(x, y).isEqualTo(blue))
+            }
+        }
+
+
+
     }
 }

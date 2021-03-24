@@ -2,7 +2,9 @@ package de.tbollmeier.raycer.core
 
 import kotlin.math.abs
 
-class Color(val red: Double, val green: Double, val blue: Double) {
+class Color(val red: Double = 0.0,
+            val green: Double = 0.0,
+            val blue: Double = 0.0) {
 
     fun isEqualTo(other: Color): Boolean {
         return abs(red - other.red) <= EPS && abs(green - other.green) <= EPS && abs(blue - other.blue) <= EPS
